@@ -72,8 +72,19 @@
   <header>
     <nav>
       <ul>
-        <li><a href="{% url 'vehicles_list' %}">Vehicles</a></li>
-        <li><a href="{% url 'new_vehicle' %}" ></a></li>
+        {% if user.is_authenticated %}
+          <li>Hi, {{user.username}}</li>
+          <li><a href="{% url 'new_vehicle' %}" >Register vehicle</a></li>
+        {% endif %}  
+        {% if not user.is_authenticated %}
+          <li><a href="{% url 'register' %}">Register user</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}  
+        <li><a href="{% url 'vehicles_list' %}" >Vehicles</a></li>
+
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'logout' %}" >Logout</a></li>
+        {% endif %}
       </ul>
     </nav>
   </header>
