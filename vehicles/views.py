@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from vehicles.models import Vehicle
 from vehicles.forms import VehicleForm
 
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 
 
 class VehiclesListView(ListView):
@@ -24,3 +24,8 @@ class NewVehicleView(CreateView):
     form_class = VehicleForm
     template_name = 'new_vehicle.html'
     success_url='/vehicles/'
+
+
+class VehicleDetailView(DetailView):
+    model = Vehicle
+    template_name = 'vehicle_detail.html'    
