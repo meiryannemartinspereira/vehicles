@@ -2,22 +2,21 @@ from django.shortcuts import render, redirect
 from vehicles.models import Vehicle
 from vehicles.forms import VehicleForm
 
-from django.views import View
+from django.views.generic import ListView, View
 
 
-class VehiclesView(View):
-    def get(self, request):
-        vehicles = Vehicle.objects.all().order_by('model')
-        search = request.GET.get('search')
+class VehiclesListView(ListView):
+    model = Vehicle
+    template_name = 'vehicles.html'
+    context_object_name = 'vehicles'
+
+    def get_queryset(self):
+        vehicles = super().get_queryset().order_by('model')
+        search = self.request.GET.get('search')
 
         if search:
             vehicles = vehicles.filter(model__icontains=search)
-
-        return render(
-            request,
-            'vehicles.html',
-            {'vehicles': vehicles}
-        )    
+        return vehicles
 
 
 class NewVehicleView(View):
