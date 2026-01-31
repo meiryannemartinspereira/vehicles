@@ -91,6 +91,16 @@
     button[type="submit"]:hover {
         background-color: #108eb8;
     }
+
+    a {
+      font-size: 18px;
+      color: #333;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #0096c7;
+    }
   </style>
 
   <form method="GET" action="{% url 'vehicles_list' %}">
@@ -101,11 +111,13 @@
   <div class="car-grid">
     {% if vehicles %}
       {% for vehicle in vehicles %}
-        <div class="car-card">
-          <img src="{{ vehicle.photo.url }}" alt="{{ vehicle.model }} - {{ vehicle.brand }}">
-          <h2>{{ vehicle.brand }} {{ vehicle.model }}</h2>
-          <p>{{ vehicle.factory_year }} - R$ {{ vehicle.price }}</p>
-        </div>
+      <a href="{% url 'vehicle_details' vehicle.pk %}">
+          <div class="car-card">
+            <img src="{{ vehicle.photo.url }}" alt="{{ vehicle.model }} - {{ vehicle.brand }}">
+            <h2>{{ vehicle.brand }} {{ vehicle.model }}</h2>
+            <p>{{ vehicle.factory_year }} - R$ {{ vehicle.price }}</p>
+          </div>
+      </a>    
       {% endfor %}
     {% else %}
       <p class="no-results">Nenhum carro encontrado.</p>
