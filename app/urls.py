@@ -3,13 +3,13 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from accounts.views import register_view, login_view, logout_view
-from vehicles.views import new_vehicle_view, VehiclesView
+from vehicles.views import NewVehicleView, VehiclesView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('vehicles/', VehiclesView.as_view(), name='vehicles_list'),
-    path('new_vehicle/', new_vehicle_view, name='new_vehicle'),
+    path('new_vehicle/', NewVehicleView.as_view(), name='new_vehicle'),
     path('login/', login_view, name='login'),
     path('register/', register_view, name='register'),
     path('logout/', logout_view, name='logout')

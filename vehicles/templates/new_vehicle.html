@@ -1,15 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
+<form method="post" enctype="multipart/form-data" action="{% url 'new_vehicle' %}">
+    {% csrf_token %}
 
-        <table>
-            {{ new_vehicle_form.as_table }}
-        </table>
+    <table>
+        {{ vehicle_form.as_table }}
+    </table>
 
-        <input type="submit" value="register" class="btn btn-primary">
-
-    </form>
-
+    <input type="submit" value="Register" class="btn btn-primary">
+</form>
 {% endblock %}
