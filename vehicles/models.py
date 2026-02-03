@@ -22,11 +22,11 @@ class Vehicle(models.Model):
     
 class VehicleInvetory(models.Model):
     vehicles_count = models.IntegerField()
-    vehicles_value = models.FloatField()
+    vehicles_price = models.FloatField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['-created_at']
 
     def __str__(self):
-        return f'{self.vehicles_count} - {self.vehicles_value}'    
+        return f'{self.vehicles_count} - {self.vehicles_price}'    
