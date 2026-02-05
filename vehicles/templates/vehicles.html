@@ -113,7 +113,11 @@
       {% for vehicle in vehicles %}
       <a href="{% url 'vehicle_details' vehicle.pk %}">
           <div class="car-card">
-            <img src="{{ vehicle.photo.url }}" alt="{{ vehicle.model }} - {{ vehicle.brand }}">
+            {% if vehicle.photo %}
+              <img src="{{ vehicle.photo.url }}" alt="{{ vehicle.model }} - {{ vehicle.brand }}">
+            {% else %}
+              <p>Dont have photo available</p>
+            {% endif %}  
             <h2>{{ vehicle.brand }} {{ vehicle.model }}</h2>
             <p>{{ vehicle.factory_year }} - R$ {{ vehicle.price }}</p>
           </div>
